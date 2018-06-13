@@ -21,7 +21,7 @@
             <span class="col-lg-1 col-md-1 col-xs-1"></span>
             <span class="col-lg-2 col-md-2 col-xs-3 text-right">Business Unit</span>
             <div class="col-lg-3 col-md-3 col-xs-5">
-                <select class="form-control" [(ngModel)]="businessUnit">
+                <select class="form-control" [(ngModel)]="businessUnit" (change)="onOrganizeChange($event.target.value, 'BU')">
                     <option value="" disabled>Select Business Unit</option>
                     <option *ngFor="let data of data2screen.buList" [value]="data">{{data}}</option>
                 </select>
@@ -29,7 +29,7 @@
             <span class="col-lg-1 col-md-1 col-xs-12"></span>
             <span class="col-lg-1 col-md-2 col-xs-4 text-right">Department</span>
             <div class="col-lg-3 col-md-3 col-xs-5">
-                <select class="form-control" [(ngModel)]="department">
+                <select class="form-control" [(ngModel)]="department" (change)="onOrganizeChange($event.target.value, 'DP')">
                     <option value="" disabled>Select Department</option>
                     <option *ngFor="let data of data2screen.dpList" [value]="data">{{data}}</option>
                 </select>
@@ -41,7 +41,7 @@
             <span class="col-lg-1 col-md-1 col-xs-1"></span>
             <span class="col-lg-2 col-md-2 col-xs-3 text-right">Section</span>
             <div class="col-lg-3 col-md-3 col-xs-5">
-                <select class="form-control" [(ngModel)]="section">
+                <select class="form-control" [(ngModel)]="section" (change)="onOrganizeChange($event.target.value, 'SC')">
                     <option value="" disabled>Select Section</option>
                     <option *ngFor="let data of data2screen.scList" [value]="data">{{data}}</option>
                 </select>
@@ -50,7 +50,7 @@
             <span class="col-lg-1 col-md-1 col-xs-12"></span>
             <span class="col-lg-1 col-md-2 col-xs-4 text-right">Function</span>
             <div class="col-lg-3 col-md-3 col-xs-5">
-                <select class="form-control" [(ngModel)]="function">
+                <select class="form-control" [(ngModel)]="function" (change)="onOrganizeChange($event.target.value, 'FC')">
                     <option value="" disabled>Select Function</option>
                     <option *ngFor="let data of data2screen.fcList" [value]="data">{{data}}</option>
                 </select>
@@ -61,7 +61,7 @@
             <span class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></span>
             <span class="col-lg-2 col-md-2 col-sm-3 col-xs-3 text-right">Period From</span>
             <my-date-picker class="col-lg-3 col-md-3 col-sm-3 col-xs-3" [options]="myDatePickerOptions" [(ngModel)]="periodFrom" (dateChanged)="onDateChanged_from($event)"></my-date-picker>
-            <span class="col-lg-2 col-md-2 col-sm-1 col-xs-1 text-right">To</span>
+            <span class="col-lg-2 col-md-3 col-sm-2 col-xs-1 text-right">To</span>
             <my-date-picker class="col-lg-3 col-md-3 col-sm-3 col-xs-3" [options]="myDatePickerOptions" [(ngModel)]="periodTo" (dateChanged)="onDateChanged_to($event)"></my-date-picker>
 
             <br>

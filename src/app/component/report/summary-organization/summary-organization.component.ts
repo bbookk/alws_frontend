@@ -53,6 +53,13 @@ export class SummaryOrganizationComponent implements OnInit {
     fcList: []
   }
 
+  public param = {
+    businessUnit: 'BU',
+    department: 'DP',
+    section: 'SC',
+    function: 'FC'
+  }
+
 
   public myDatePickerOptions: IMyDpOptions = {
 
@@ -106,17 +113,37 @@ export class SummaryOrganizationComponent implements OnInit {
   }
 
   onCompanyChange(companyValue) {
-    this.data2screen = {
-      coList: [],
-      buList: [],
-      dpList: [],
-      scList: [],
-      fcList: []
-    }
+    this.clearDropdown();
     let orgCode = this.getOrgCode(companyValue);
-    console.log(orgCode)
+    console.log('company ', orgCode)
     this.getOrganization(orgCode);
   }
+
+  onOrganizeChange(value, param) {
+    console.log(value, ' ', param)
+    if (param == this.param.businessUnit) {
+      let orgCode = this.getOrgCodeOrganize(value, this.param.businessUnit);
+      console.log('bu ', orgCode)
+      this.getOrganization(orgCode);
+    }
+    if (param == this.param.department) {
+      let orgCode = this.getOrgCodeOrganize(value, this.param.department);
+      console.log('dp ', orgCode)
+      this.getOrganization(orgCode);
+    }
+    if (param == this.param.section) {
+      let orgCode = this.getOrgCodeOrganize(value, this.param.section);
+      console.log('sc ', orgCode)
+      this.getOrganization(orgCode);
+    }
+    if (param == this.param.function) {
+      let orgCode = this.getOrgCodeOrganize(value, this.param.function);
+      console.log('fc ', orgCode)
+      this.getOrganization(orgCode);
+    }
+
+  }
+
 
   initialData() {
     console.log(this.searchDetail);
@@ -177,32 +204,33 @@ export class SummaryOrganizationComponent implements OnInit {
     })
   }
 
-  getRelateOrganization(value){
-    console.log(value)
-    this.summaryOrganizationService.getOrganize(value).then((resp : any) => {
-      console.log(resp)
-    })
-  }
-
   findOrgCode(orgCode) {
     for (let i = 0; i < this.organize_info.buList.length; i++) {
       if (this.organize_info.buList[i].higher_org === orgCode) {
-        this.data2screen.buList.push(this.organize_info.buList[i].org_name)
+        if (!this.data2screen.buList.includes(this.organize_info.buList[i].org_name)) {
+          this.data2screen.buList.push(this.organize_info.buList[i].org_name)
+        }
       }
     }
     for (let i = 0; i < this.organize_info.dpList.length; i++) {
       if (this.organize_info.dpList[i].higher_org === orgCode) {
-        this.data2screen.dpList.push(this.organize_info.dpList[i].org_name)
+        if (!this.data2screen.dpList.includes(this.organize_info.dpList[i].org_name)) {
+          this.data2screen.dpList.push(this.organize_info.dpList[i].org_name)
+        }
       }
     }
     for (let i = 0; i < this.organize_info.scList.length; i++) {
       if (this.organize_info.scList[i].higher_org === orgCode) {
-        this.data2screen.scList.push(this.organize_info.scList[i].org_name)
+        if (!this.data2screen.scList.includes(this.organize_info.scList[i].org_name)) {
+          this.data2screen.scList.push(this.organize_info.scList[i].org_name)
+        }
       }
     }
     for (let i = 0; i < this.organize_info.fcList.length; i++) {
       if (this.organize_info.fcList[i].higher_org === orgCode) {
-        this.data2screen.fcList.push(this.organize_info.fcList[i].org_name)
+        if (!this.data2screen.fcList.includes(this.organize_info.fcList[i].org_name)) {
+          this.data2screen.fcList.push(this.organize_info.fcList[i].org_name)
+        }
       }
     }
   }
@@ -223,7 +251,27 @@ export class SummaryOrganizationComponent implements OnInit {
     return obj.org_code;
   }
 
+  getOrgCodeOrganize(value, param) {
+    if (param === this.param.businessUnit) {
+      let obj = this.organize_info.buList.find(array => array.org_name === value);
+      return obj.org_code;
+    }
+    if (param === this.param.department) {
+      let obj = this.organize_info.dpList.find(array => array.org_name === value);
+      return obj.org_code;
+    }
+    if (param === this.param.section) {
+      let obj = this.organize_info.scList.find(array => array.org_name === value);
+      return obj.org_code;
+    }
+    if (param === this.param.function) {
+      let obj = this.organize_info.fcList.find(array => array.org_name === value);
+      return obj.org_code;
+    }
+  }
+
   clearDropdown() {
+    this.company = this.companyList[0];
     this.data2screen = {
       coList: [],
       buList: [],
@@ -232,7 +280,6 @@ export class SummaryOrganizationComponent implements OnInit {
       fcList: []
     }
 
-    this.company = this.companyList[0];
     this.businessUnit = "";
     this.department = "";
     this.section = "";
