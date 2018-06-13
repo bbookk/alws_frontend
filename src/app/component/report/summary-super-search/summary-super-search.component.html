@@ -1,0 +1,270 @@
+<!--<app-header></app-header>-->
+
+<!-- search -->
+<div class="container-fluid">
+    <div class="col-lg-1 col-md-1 col-xs-1"></div>
+
+    <div class="panel panel-report col-lg-10 col-md-10 col-xs-10">
+        <h1 class="title-report">Search criteria</h1>
+        <hr>
+        <div class="form-group row user-info">
+            <span class="col-lg-1 col-md-1 col-xs-1"></span>
+            <span class="col-lg-2 col-md-2 col-xs-3 text-right">Search Type </span>
+            <div class="form-check col-lg-8 col-md-8 col-xs-7">
+                <label class="form-check-label col-lg-2 col-md-3 col-xs-7">
+                    <input type="radio" class="form-check-input" value="Normal" name="search_type" [(ngModel)]="search_type"> Normal
+                </label>
+                <label class="form-check-label col-lg-3 col-md-4 col-xs-7">
+                    <input type="radio" class="form-check-input" value="Subordinate" name="search-type" [(ngModel)]="search_type"> Subordinate
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group row user-info">
+                <span class="col-lg-1 col-md-1 col-xs-1"></span>
+                <span class="col-lg-2 col-md-2 col-xs-3 text-right">Search By</span>
+                <div class="form-check col-lg-7 col-md-7 col-xs-7">
+                  <label class="form-check-label col-lg-2 col-md-3 col-xs-4">
+                    <input type="radio" class="form-check-input" value="PIN" name="search-by" [(ngModel)]="searchBy"> PIN
+                  </label>
+                  <label class="form-check-label col-lg-2 col-md-3 col-xs-6">
+                    <input type="radio" class="form-check-input" value="NAME" name="search-by" [(ngModel)]="searchBy" checked> Name
+                  </label>
+                </div>
+                <br>
+              </div>
+          
+              <div class="form-group row user-info">
+                <span class="col-lg-3 col-md-3 col-sm-4 col-xs-4"></span>
+                <!-- input PIN -->
+                <div class="col-lg-3 col-md-3 col-xs-3" *ngIf="searchBy === 'PIN'">
+                  <input type="text" class="form-control" placeholder="PIN Number" name="PIN" id="PIN" [(ngModel)]="pin">
+          
+                </div>
+          
+                <!-- imput Name -->
+                <div class="col-lg-3 col-md-3 col-xs-3" *ngIf="searchBy === 'NAME'">
+                  <input type="text" class="form-control" placeholder="Name" [(ngModel)]="Name" name="Name" id="Name">
+                </div>
+                <div class="col-lg-3 col-md-3 col-xs-3" *ngIf="searchBy === 'NAME'">
+                  <input type="text" class="form-control" placeholder="Surname" [(ngModel)]="Surname" name="Surname" id="Surname">
+                </div>
+              </div>
+
+        <div class="form-group row user-info">
+            <span class="col-lg-1 col-md-1 col-xs-1"></span>
+            <span class="col-lg-2 col-md-2 col-xs-3 text-right">Company</span>
+            <div class="col-lg-3 col-md-3 col-xs-3">
+                <select class="form-control" [(ngModel)]="company">
+                    <option value="ais">ais</option>
+                    <option value="test">test</option>
+                    <option value="exam">exam</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group row user-info">
+            <span class="col-lg-1 col-md-1 col-xs-1"></span>
+
+            <span class="col-lg-2 col-md-2 col-xs-3 text-right">Business Unit</span>
+            <div class="col-lg-3 col-md-3 col-xs-3">
+                <select class="form-control" [(ngModel)]="business_unit">
+                    <option value="ais">ais</option>
+                    <option value="test">test</option>
+                    <option value="exam">exam</option>
+                </select>
+            </div>
+            <span class="col-lg-1 col-md-1 col-xs-12"></span>
+            <span class="col-lg-1 col-md-2 col-xs-4 text-right">Department</span>
+            <div class="col-lg-3 col-md-3 col-xs-3">
+                <select class="form-control" [(ngModel)]="department">
+                    <option value="ais">ais</option>
+                    <option value="test">test</option>
+                    <option value="exam">exam</option>
+                </select>
+            </div>
+
+        </div>
+
+        <div class="form-group row user-info">
+            <span class="col-lg-1 col-md-1 col-xs-1"></span>
+            <span class="col-lg-2 col-md-2 col-xs-3 text-right">Section</span>
+            <div class="col-lg-3 col-md-3 col-xs-3">
+                <select class="form-control" [(ngModel)]="section">
+                    <option value="ais">ais</option>
+                    <option value="test">test</option>
+                    <option value="exam">exam</option>
+                </select>
+            </div>
+
+            <span class="col-lg-1 col-md-1 col-xs-12"></span>
+            <span class="col-lg-1 col-md-2 col-xs-4 text-right">Function</span>
+            <div class="col-lg-3 col-md-3 col-xs-3">
+                <select class="form-control" [(ngModel)]="function">
+                    <option value="ais">ais</option>
+                    <option value="test">test</option>
+                    <option value="exam">exam</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="text-center col-lg-12 col-md-12 col-xs-12">
+
+            <button class="btn btn-info btn-search-criteria">
+                Clear
+            </button>
+            <button class="btn btn-warning btn-search-criteria">
+                Export to Excel
+            </button>
+            <button class="btn btn-primary btn-search-criteria" (click)="clickedSearch()" id="search-btn">
+                Search
+            </button>
+
+        </div>
+
+    </div>
+    <div class="col-lg-1 col-md-1 col-xs-1"></div>
+</div>
+
+<!-- Employee detail -->
+<ng-container *ngIf="showResult">
+    <div class="container-fluid" *ngIf="showResult">
+      <div class="col-lg-1 col-md-1 col-xs-1"></div>
+      <div class = "panel panel-report col-lg-10 col-md-10 col-xs-10">
+          <h1 class="title-report">Employee Detail</h1>
+          <hr>
+          <!-- line 1  -->
+          <div class="form-group row user-info">
+            <span class="col-lg-1 col-md-1 col-xs-0"></span>
+            <span class="col-lg-2 col-md-2 col-xs-2 text-right">PIN:</span>
+            <span class="col-lg-3 col-md-3 col-xs-3">{{employee_detail.pin}}</span>
+  
+            <span class="col-lg-2 col-md-2 col-xs-2 text-right">Name:</span>
+            <span class="col-lg-3 col-md-3 col-xs-4">{{employee_detail.name}}</span>
+            <br>
+          </div> 
+          <!-- line 2  -->
+          <div class="form-group row user-info">
+            <span class="col-lg-1 col-md-1 col-xs-0"></span>
+            <span class="col-lg-2 col-md-2 col-xs-2 text-right">BL:</span>
+            <span class="col-lg-3 col-md-3 col-xs-3">{{employee_detail.BL}}</span>
+  
+            <span class="col-lg-2 col-md-2 col-xs-2 text-right">Company:</span>
+            <span class="col-lg-3 col-md-3 col-xs-4">{{employee_detail.company}}</span>
+            <br>
+          </div> 
+          <!-- line 3  -->
+          <div class="form-group row user-info">
+            <span class="col-lg-1 col-md-1 col-xs-0"></span>
+            <span class="col-lg-2 col-md-2 col-xs-2 text-right">BU/SU:</span>
+            <span class="col-lg-3 col-md-3 col-xs-3">{{employee_detail.BU}}</span>
+  
+            <span class="col-lg-2 col-md-2 col-xs-2 text-right">Department:</span>
+            <span class="col-lg-3 col-md-3 col-xs-4">{{employee_detail.department}}</span>
+            <br>
+          </div> 
+      </div>
+    </div>
+  </ng-container>
+
+<!-- result -->
+<ng-container *ngIf="showResult">
+    <div class="container-fluid">
+        <div class="col-lg-1 col-md-1 col-xs-1"></div>
+        <div class="panel panel-report col-lg-10 col-md-10 col-xs-10">
+            <h1 class="title-report">Result</h1>
+            <hr>
+
+            <div class="pull-right record-perpage form-inline">
+                <span>Record/page</span>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        แสดงทั้งหมด
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#">10</a>
+                        </li>
+                        <li>
+                            <a href="#">50</a>
+                        </li>
+                        <li>
+                            <a href="#">100</a>
+                        </li>
+                        <li>
+                            <a href="#">แสดงทั้งหมด</a>
+                        </li>
+                    </ul>
+                </div>
+                <span>Total Items 3 Record(s)</span>
+            </div>
+            <br>
+            <div>
+                <div class="table-wrapper">
+                    <table class="table">
+                        <thead>
+                            <!-- header -->
+                            <tr>
+                                <th class="col-md-1 col-lg-1 col-sm-1" rowspan="1">Up</th>
+                                <th class="col-md-1 col-lg-1 col-sm-1" rowspan="1">Down</th>
+                                <th class="col-md-1 col-lg-1 col-sm-1" rowspan="1">Pin</th>
+                                <th class="col-md-1 col-lg-1 col-sm-1" rowspan="1">Employee Name</th>
+                                <th class="col-md-1 col-lg-1 col-sm-1" rowspan="1">Position</th>
+                                <th class="col-md-1 col-lg-1 col-sm-1" rowspan="1">Organization Path</th>
+                                <th class="col-md-1 col-lg-1 col-sm-1" rowspan="1">Chief Person</th>
+                            </tr>
+                            <!-- result -->
+
+                            <tr class="tr-border" *ngFor ="let data of arr_result">
+                                <td></td>
+                                <td></td>
+                                <td>{{data.PIN}}</td>
+                                <td>{{data.Employee_Name}}</td>
+                                <td>{{data.Position}}</td>
+                                <td>{{data.Organization_Path}}</td>
+                                <td>{{data.Chief_Person}}</td>
+                            </tr>
+
+                            <!-- <tr style="tr-border">
+                                <td></td>
+                                <td></td>
+                                <td>00043043</td>
+                                <td>นันธิดา ทรัพย์ประเสริฐ</td>
+                                <td>Call Center Representative</td>
+                                <td>CO-ACC-BU-CC-BU-CC</td>
+                                <td>นันธิดา ทรัพย์ประเสริฐ</td>
+                            </tr>
+                            <tr style="tr-border">
+                                <td></td>
+                                <td></td>
+                                <td>00043043</td>
+                                <td>นันธิดา ทรัพย์ประเสริฐ</td>
+                                <td>Call Center Representative</td>
+                                <td>CO-ACC-BU-CC-BU-CC</td>
+                                <td>นันธิดา ทรัพย์ประเสริฐ</td>
+                            </tr> -->
+
+
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-container>
+
+<go-top-button [html]="'<i class=\'fa fa-arrow-up\'></i>'" [animate]="true" [speed]="50" [acceleration]="2" [scrollDistance]="300"
+    [styles]="{
+     'border-radius': '30px',
+     'right': '15px',
+     'color': 'white',
+     'line-height': '20px',
+     'top': '85%',
+     'width': '55px',
+     'height': '55px',
+     'border': 'none',
+     'background': 'yellowgreen',
+     'font-size': '20px'
+  }">
+</go-top-button>

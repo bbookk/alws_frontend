@@ -1,0 +1,164 @@
+<!--<app-header></app-header>-->
+
+<!-- search -->
+<div class="container-fluid">
+    <div class="col-lg-1 col-md-1 col-xs-1"></div>
+
+    <div class="panel panel-report col-lg-10 col-md-10 col-xs-10">
+        <h1 class="title-report">Search criteria</h1>
+
+        <div class="form-group row user-info">
+            <span class="col-lg-1 col-md-1 col-xs-1"></span>
+            <span class="col-lg-2 col-md-2 col-xs-3 text-right">Company</span>
+            <div class="col-lg-3 col-md-3 col-xs-3">
+                <select class="form-control" [(ngModel)]="company">
+                    <option value="ais">ais</option>
+                    <option value="test">test</option>
+                    <option value="exam">exam</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group row user-info">
+            <span class="col-lg-1 col-md-1 col-xs-1"></span>
+
+            <span class="col-lg-2 col-md-2 col-xs-3 text-right">Business Unit</span>
+            <div class="col-lg-3 col-md-3 col-xs-3">
+                <select class="form-control" [(ngModel)]="businessUnit">
+                    <option value="ais">ais</option>
+                    <option value="test">test</option>
+                    <option value="exam">exam</option>
+                </select>
+            </div>
+            <span class="col-lg-1 col-md-1 col-xs-12"></span>
+            <span class="col-lg-1 col-md-2 col-xs-4 text-right">Department</span>
+            <div class="col-lg-3 col-md-3 col-xs-3">
+                <select class="form-control" [(ngModel)]="department">
+                    <option value="ais">ais</option>
+                    <option value="test">test</option>
+                    <option value="exam">exam</option>
+                </select>
+            </div>
+
+        </div>
+
+        <div class="form-group row user-info">
+            <span class="col-lg-1 col-md-1 col-xs-1"></span>
+            <span class="col-lg-2 col-md-2 col-xs-3 text-right">Section</span>
+            <div class="col-lg-3 col-md-3 col-xs-3">
+                <select class="form-control" [(ngModel)]="section">
+                    <option value="ais">ais</option>
+                    <option value="test">test</option>
+                    <option value="exam">exam</option>
+                </select>
+            </div>
+
+            <span class="col-lg-1 col-md-1 col-xs-12"></span>
+            <span class="col-lg-1 col-md-2 col-xs-4 text-right">Function</span>
+            <div class="col-lg-3 col-md-3 col-xs-3">
+                <select class="form-control" [(ngModel)]="function">
+                    <option value="ais">ais</option>
+                    <option value="test">test</option>
+                    <option value="exam">exam</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group row user-info">
+            <span class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></span>
+            <span class="col-lg-2 col-md-2 col-sm-3 col-xs-3 text-right">Period From</span>
+            <my-date-picker class="col-lg-3 col-md-3 col-sm-3 col-xs-3" [options]="myDatePickerOptions" (dateChanged)="onDateChanged_from($event)"></my-date-picker>
+            <span class="col-lg-2 col-md-2 col-sm-1 col-xs-1 text-right">To</span>
+            <my-date-picker class="col-lg-3 col-md-3 col-sm-3 col-xs-3" [options]="myDatePickerOptions" (dateChanged)="onDateChanged_to($event)"></my-date-picker>
+
+            <br>
+        </div>
+
+        <div class="text-center col-lg-12 col-md-12 col-xs-12">
+
+            <button class="btn btn-info btn-search-criteria">
+                Clear
+            </button>
+            <button class="btn btn-warning btn-search-criteria">
+                Export to Excel
+            </button>
+            <button class="btn btn-primary btn-search-criteria" (click)="clickedSearch()" id="search-btn">
+                Search
+            </button>
+
+        </div>
+
+    </div>
+    <div class="col-lg-1 col-md-1 col-xs-1"></div>
+</div>
+
+<!-- result -->
+<ng-container *ngIf="showResult">
+    <div class="container-fluid">
+        <div class="col-lg-1 col-md-1 col-xs-1"></div>
+        <div class="panel panel-report col-lg-10 col-md-10 col-xs-10">
+            <h1 class="title-report">Result</h1>
+            <hr>
+            <div>
+                <div class="table-wrapper">
+                    <table class="table">
+                        <thead>
+                            <!-- header -->
+                            <tr>
+                                <th class="col-md-1 col-lg-1 col-sm-1">Pin</th>
+                                <th class="col-md-1 col-lg-1 col-sm-1">Name</th>
+                                <th class="col-md-1 col-lg-1 col-sm-1">Organization Short Name</th>
+                                <th class="col-md-1 col-lg-1 col-sm-1">Schedule Date</th>
+                                <th class="col-md-1 col-lg-1 col-sm-1">Adjust Reason</th>
+                                <th class="col-md-1 col-lg-1 col-sm-1">Adjust Date</th>
+
+                            </tr>
+                            <!-- result -->
+
+                            <tr class="tr-border" *ngFor ="let data of resultRecord">
+                                <td>{{data.pin}}</td>
+                                <td>{{data.name}}</td>
+                                <td>{{data.organizationShortName}}</td>
+                                <td>{{data.scheduleDate}}</td>
+                                <td>{{data.adjustReason}}</td>
+                                <td>{{data.adjustDate}}</td>
+                              </tr>
+                            <!-- <tr style="tr-border">
+                                <td>00005412</td>
+                                <td>วิพาภรณ์ เลิศทรัพย์</td>
+                                <td>SC-CREB 3</td>
+                                <td>05/12/2017</td>
+                                <td>Create Compensate Over 6 Days SOWFM-2017006334</td>
+                                <td>15/12/2017 14:17:34</td>
+                            </tr>
+                            <tr style="tr-border">
+                                <td>00005412</td>
+                                <td>วิพาภรณ์ เลิศทรัพย์</td>
+                                <td>SC-CREB 3</td>
+                                <td>05/12/2017</td>
+                                <td>Create Compensate Over 6 Days SOWFM-2017006334</td>
+                                <td>15/12/2017 14:17:34</td>
+                            </tr> -->
+
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-container>
+
+<go-top-button [html]="'<i class=\'fa fa-arrow-up\'></i>'" [animate]="true" [speed]="50" [acceleration]="2" [scrollDistance]="300"
+    [styles]="{
+     'border-radius': '30px',
+     'right': '15px',
+     'color': 'white',
+     'line-height': '20px',
+     'top': '85%',
+     'width': '55px',
+     'height': '55px',
+     'border': 'none',
+     'background': 'yellowgreen',
+     'font-size': '20px'
+  }">
+</go-top-button>

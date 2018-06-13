@@ -1,0 +1,6 @@
+<app-header [hidden]="_router.url=='/login'"></app-header>
+<router-outlet>
+    <div *ngIf="commonUtils.onLoad()" class="my-container">
+        <ngx-loading [show]="commonUtils.onLoad()" [config]="{fullScreenBackdrop:true}"></ngx-loading>
+    </div>
+</router-outlet>

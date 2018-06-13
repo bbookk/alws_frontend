@@ -1,0 +1,9 @@
+{
+  "home": {
+    "title": "Employee information",
+    "name": "Name-Surname",
+    "position": "Position",
+    "corp": "Corporate",
+    "last-online": "Latest Login"
+  }
+}

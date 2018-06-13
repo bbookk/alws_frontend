@@ -1,0 +1,59 @@
+<!-- result -->
+<ng-container>
+    <div class="container-fluid">
+        <div class="col-lg-1 col-md-1 col-xs-1"></div>
+        <div class="panel panel-report col-lg-10 col-md-10 col-xs-10">
+            <h1 class="title-report">Special Day</h1>
+            <hr>
+            <div>
+                <div class="table-wrapper">
+                    <table class="table">
+                        <thead>
+                            <!-- header -->
+                            <tr class="col-lg-12 col-md-12 col-xs-12">
+                                <th class="col-lg-1 col-md-1 col-xs-1 text-center">Select</th>
+                                <th class="col-lg-2 col-md-2 col-xs-2 text-center">Date</th>
+                                <th class="col-lg-5 col-md-5 col-xs-5 text-center">Speacial Day</th>
+                                <th class="col-lg-2 col-md-2 col-xs-2 text-center">Compensatio</th>
+                                <th class="col-lg-1 col-md-1 col-xs-1 text-center">Edit</th>
+                                <th class="col-lg-1 col-md-1 col-xs-1 text-center">Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- result -->
+                            <tr class="tr-border col-lg-12 col-md-12 col-xs-12" *ngFor="let data of speacialDay ;let i = index">
+                                <td class="col-lg-1 col-md-1 col-xs-1">
+                                    <input type="checkbox">
+                                </td>
+                                <td *ngIf="!data.edit" class="col-lg-2 col-md-2 col-xs-2 ">{{data.txtDate}}</td>
+                                <td *ngIf="data.edit"  class="col-lg-2 col-md-2 col-xs-2">
+                                    <my-date-picker  [options]="myDatePickerOptions" [selector]="selector" (inputFieldChanged)="onInputFieldChanged($event,i)" [(ngModel)]="data.date" required ></my-date-picker>
+                                </td>
+                                <td *ngIf="!data.edit" class="col-lg-5 col-md-5 col-xs-5 text-left">{{data.speacialDay}}</td>
+                                <td *ngIf="data.edit"  class="col-lg-5 col-md-5 col-xs-5"><input type="text" class="form-control" [(ngModel)]="nameDay[i]" ></td>
+                                <td *ngIf="!data.edit" class="col-lg-2 col-md-2 col-xs-2">
+                                    <span *ngIf="data.compensation" class="glyphicon glyphicon-ok" style="color:green;" ></span>
+                                    <span *ngIf="!data.compensation" class="glyphicon glyphicon-remove" style="color:red;" ></span>
+                                </td>
+                                <td *ngIf="data.edit"  class="col-lg-2 col-md-2 col-xs-2">
+                                    <input type="checkbox"  [checked]="data.compensation" (change)="checkbox($event,i)">
+                                </td>
+                                <td *ngIf="!data.edit" class="col-lg-1 col-md-1 col-xs-1">
+                                    <span class="glyphicon glyphicon-pencil" (click)="setEdit(i)"></span>
+                                </td>
+                                <td *ngIf="data.edit"class="col-lg-1 col-md-1 col-xs-1">
+                                    <span class="glyphicon glyphicon-floppy-saved _green" (click)="setSave(i)"></span>
+                                    <span class="glyphicon glyphicon-floppy-remove _red" (click)="setCancle(i)"></span>
+                                </td>
+                                <td class="col-lg-1 col-md-1 col-xs-1">
+                                    <span class="glyphicon glyphicon-trash" (click)="setDelete(i)"></span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+</ng-container>

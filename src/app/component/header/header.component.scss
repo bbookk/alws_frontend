@@ -1,0 +1,125 @@
+.site-header {
+    background: url(../../../assets/img/header/Header-image.jpg) top no-repeat #fff;
+    background-size: 100%;
+}
+
+.logout-btn {
+    float: right;
+}
+
+.logout-btn a {
+    float: right; 
+    margin-top: 45px; 
+    font-size: 15px;
+    width: 100px;
+}
+
+.user-header {
+    float:right; 
+    margin: 30px 25px; 
+    text-align: -webkit-center;
+}
+.user-header i {
+    font-size:35px; 
+    color:#74a822;
+}
+.user-header h2 {
+    font-size: 18px; 
+    margin: 0px; 
+    padding-top: 5px;
+}
+
+// menu
+.sidenav {
+    height: auto;
+    width: 270px;
+    position: fixed;
+    z-index: 1;
+    top: 2px;
+    left: -3px;
+    background-color: rgb(255, 255, 255);
+    overflow-x: hidden;
+    transition: 0.4s;
+    padding-top: 48px;
+    margin-top: 120px;
+    margin-left: -270px;
+    box-shadow: rgb(164, 163, 163) 0px 0px 5px 3px;
+    border-radius: 5px;
+    max-height: 480px;
+}
+
+.sidenav a, .dropdown-btn {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 16px;
+    color: #818181;
+    display: block;
+    transition: 0.2s;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background: none;
+    line-height: 32px;
+}
+
+.sidenav a:hover, .dropdown-btn:hover {
+    color: #f1f1f1;
+    background-color: #74a822;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    font-size: 30px;
+    padding-left: 18px;
+    color: #74a822;
+}
+
+.sidenav .sidebar-icon {
+    font-size: 25px;
+}
+
+.sidenav .sidebar-title {
+    padding-left: 4px;
+}
+
+.sidenav ul {
+    margin: 0px;
+}
+
+// Language
+.language-container {
+    display: inline-block;
+}
+
+.circleBase {
+    border-radius: 50%;
+    color: white;
+    line-height: 32px;
+    text-align: center;
+    width: 32px;
+    height: 32px;
+    margin-right: 5px;
+    display: inline-block;
+    cursor: pointer;
+
+    &:last-child {
+        margin-right: 0;
+    }
+
+    &.active {
+        background: #8dc63f;
+    }
+
+    &.in-active {
+        background: #f0f0f0;
+        color: #9a9a9a !important;
+    }
+}
+
+// breadcrumb
+.breadcrumb {
+    font-size: 16px;
+}

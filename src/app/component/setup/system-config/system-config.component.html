@@ -1,0 +1,52 @@
+<!-- result -->
+<ng-container>
+    <div class="container-fluid">
+        <div class="col-lg-1 col-md-1 col-xs-1"></div>
+        <div class="panel panel-report col-lg-10 col-md-10 col-xs-10">
+            <h1 class="title-report">System Config</h1>
+            <hr>
+            <div>
+                <div class="table-wrapper">
+                    <table class="table">
+                        <thead>
+                            <!-- header -->
+                            <tr class="tr-template col-lg-12 col-md-12 col-xs-12">
+                                <th class="col-lg-2 col-md-2 col-xs-2 text-center">Name</th>
+                                <th class="col-lg-5 col-md-5 col-xs-5 text-center">Value</th>
+                                <th class="col-lg-4 col-md-4 col-xs-4 text-center">Description</th>
+                                <th class="col-lg-1 col-md-1 col-xs-1 text-center">Edit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- result -->
+                            <tr class="tr-border tr-template col-lg-12 col-md-12 col-xs-12" *ngFor="let data of dataConfig ;let i = index">
+                                <td *ngIf="!data.edit" class="col-lg-2 col-md-2 col-xs-2 ">{{data.name}}</td>
+                                <td *ngIf="data.edit"  class="col-lg-2 col-md-2 col-xs-2">
+                                    <input type="text" name="name" class="form-control" [(ngModel)]="name[i]" >
+                                </td>
+                                <td *ngIf="!data.edit" class="col-lg-5 col-md-5 col-xs-5 text-left">{{data.value}}</td>
+                                <td *ngIf="data.edit"  class="col-lg-5 col-md-5 col-xs-5">
+                                    <input type="text" class="form-control" name="name" maxlength="150"  [(ngModel)]="value[i]" >
+                                    <div class="hint text-left">*maximum 150 character</div>
+                                </td>
+                                <td *ngIf="!data.edit" class="col-lg-4 col-md-4 col-xs-4 ">{{data.description}}</td>
+                                <td *ngIf="data.edit"  class="col-lg-4 col-md-4 col-xs-4">
+                                    <textarea type="text" name="description" class="form-control"  maxlength="500" [(ngModel)]="description[i]" ></textarea>
+                                    <div class="hint text-left">*maximum 500 character </div>
+                                </td>
+                                <td *ngIf="!data.edit" class="col-lg-1 col-md-1 col-xs-1">
+                                    <span class="glyphicon glyphicon-pencil" (click)="setEdit(i)"></span>
+                                </td>
+                                <td *ngIf="data.edit"class="col-lg-1 col-md-1 col-xs-1">
+                                    <span class="glyphicon glyphicon-floppy-saved _green" (click)="setSave(i)"></span>
+                                    <span class="glyphicon glyphicon-floppy-remove _red" (click)="setCancle(i)"></span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+</ng-container>

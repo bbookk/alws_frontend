@@ -1,0 +1,167 @@
+<!--component html goes here -->
+<!-- result -->
+<ng-container>
+    <div class="container-fluid">
+        <div class="col-lg-1 col-md-1 col-xs-1"></div>
+        <div class="panel panel-report col-lg-10 col-md-10 col-xs-10">
+            <h1 class="title-report">Engine</h1>
+            <hr>
+            <div class="col-lg-6 col-md-6 col-xs-6">
+                <div class="col-lg-12 col-md-12 col-xs-12 border-box ">
+                    <div class="col-lg-12 col-md-12 col-xs-12 icon">
+                        <span class="glyphicon glyphicon-play" style="color:gray;    padding: 40px;"></span>
+                        <span class="glyphicon glyphicon-record" style="color:red;    padding: 40px;"></span>
+                        <span class="glyphicon glyphicon-share-alt" style="color:gray;    padding: 40px;"></span>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-xs-3 text-center no-padding" style="font-size: 14px;  ">
+                        <label>Start On</label>
+                        <br>
+                        <label>18/01/2018 14:53</label>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-xs-12 space-top no-padding">
+                    <div class="table-wrapper">
+                        <table class="table">
+                            <thead>
+                                <!-- header -->
+                                <tr class="tr-template col-lg-12 col-md-12 col-xs-12">
+                                    <th class="col-lg-2 col-md-2 col-xs-2 text-center">Engine Process</th>
+                                    <th class="col-lg-2 col-md-2 col-xs-2 text-center">Start Process Time</th>
+                                    <th class="col-lg-2 col-md-2 col-xs-2 text-center">Stop Process Time</th>
+                                    <th class="col-lg-2 col-md-2 col-xs-2 text-center">Total Time</th>
+                                    <th class="col-lg-2 col-md-2 col-xs-2 text-center">Status</th>
+                            </thead>
+                            <tbody>
+                                <!-- result -->
+                                <tr class="tr-border tr-template col-lg-12 col-md-12 col-xs-12" *ngFor="let data of userdetail ;let i = index">
+                                    <td class="col-lg-2 col-md-2 col-xs-2">{{data.userId}}</td>
+                                    <td class="col-lg-2 col-md-2 col-xs-2">{{data.avayaId}}</td>
+                                    <td class="col-lg-2 col-md-2 col-xs-2">{{data.userId}}</td>
+                                    <td class="col-lg-2 col-md-2 col-xs-2">{{data.avayaId}}</td>
+                                    <td class="col-lg-2 col-md-2 col-xs-2">{{data.userId}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-xs-6">
+                <div class="text-center col-lg-12 col-md-12 col-xs-12 form-group no-padding">
+                    <button class="btn btn-primary btn-search-criteria"  >
+                        Daily Calculation
+                    </button>
+                    <button class="btn btn-info btn-search-criteria" >
+                        Monthly Calculation
+                    </button>
+                    <button class="btn btn-info btn-search-criteria" >
+                        OM Syncronization 
+                    </button>
+                </div>
+                <div class="col-lg-12 col-md-12 col-xs-12 form-group">
+                    <div class="col-lg-3 col-md-3 col-xs-3 no-padding">
+                        <label>schedule Retrospect</label>
+                    </div>
+                    <div class="col-lg-4 col-md-2 col-xs-2">
+                        <input type="text" class="form-control" [(ngModel)]="Name" name="Name" id="Name">
+                    </div>
+                    day(s)
+                </div>
+                <div class="col-lg-12 col-md-12 col-xs-12 form-group">
+                    <div class="col-lg-3 col-md-3 col-xs-3 no-padding">
+                        <label>Import Process Time</label>
+                    </div>
+                    <div class="col-lg-7 col-md-7 col-xs-7">
+                        <input type="text" class="form-control" [(ngModel)]="Name" name="Name" id="Name">
+                    </div>
+                </div>
+                <div class="col-lg-7 col-md-7 col-xs-7 col-md-push-3 col-lg-push-3 col-xs-push-3 form-group">
+                    <div class="col-lg-3 col-md-3 col-xs-3 " style="padding-right: 0px;">
+                        <label>Retry Time</label>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-xs-3 ">
+                        <input type="text" class="form-control " [(ngModel)]="Name" name="Name" id="Name">
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-xs-3 ">
+                        <input type="text" class="form-control " [(ngModel)]="Name" name="Name" id="Name">
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-xs-3 ">
+                        <input type="text" class="form-control " [(ngModel)]="Name" name="Name" id="Name">
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-xs-12 form-group">
+                    <div class="col-lg-3 col-md-3 col-xs-3 no-padding">
+                        <label>Username</label>
+                    </div>
+                    <div class="col-lg-7 col-md-7 col-xs-7">
+                        <input type="text" class="form-control" [(ngModel)]="Name" name="Name" id="Name">
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-xs-12 form-group">
+                    <div class="col-lg-3 col-md-3 col-xs-3 no-padding">
+                        <label>Host</label>
+                    </div>
+                    <div class="col-lg-7 col-md-7 col-xs-7">
+                        <input type="text" class="form-control" [(ngModel)]="Name" name="Name" id="Name">
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-xs-12 form-group">
+                    <div class="col-lg-3 col-md-3 col-xs-3 no-padding">
+                        <label>Host Schedule Path</label>
+                    </div>
+                    <div class="col-lg-7 col-md-7 col-xs-7">
+                        <input type="text" class="form-control" [(ngModel)]="Name" name="Name" id="Name">
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-xs-12 form-group">
+                    <div class="col-lg-3 col-md-3 col-xs-3 no-padding">
+                        <label>Host Actual Path</label>
+                    </div>
+                    <div class="col-lg-7 col-md-7 col-xs-7">
+                        <input type="text" class="form-control" [(ngModel)]="Name" name="Name" id="Name">
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-xs-12 form-group">
+                    <div class="col-lg-3 col-md-3 col-xs-3 no-padding">
+                        <label>Local Actual Path</label>
+                    </div>
+                    <div class="col-lg-7 col-md-7 col-xs-7">
+                        <input type="text" class="form-control" [(ngModel)]="Name" name="Name" id="Name">
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-xs-12 form-group">
+                    <div class="col-lg-3 col-md-3 col-xs-3 no-padding">
+                        <label>Local Schedule Path</label>
+                    </div>
+                    <div class="col-lg-7 col-md-7 col-xs-7">
+                        <input type="text" class="form-control" [(ngModel)]="Name" name="Name" id="Name">
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-xs-12 form-group">
+                    <div class="col-lg-3 col-md-3 col-xs-3 no-padding">
+                        <label>Backup Actual Path</label>
+                    </div>
+                    <div class="col-lg-7 col-md-7 col-xs-7">
+                        <input type="text" class="form-control" [(ngModel)]="Name" name="Name" id="Name">
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-xs-12 form-group">
+                    <div class="col-lg-3 col-md-3 col-xs-3 no-padding">
+                        <label>Backup Schedule Path</label>
+                    </div>
+                    <div class="col-lg-7 col-md-7 col-xs-7">
+                        <input type="text" class="form-control" [(ngModel)]="Name" name="Name" id="Name">
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-xs-12 form-group">
+                    <div class="col-lg-3 col-md-3 col-xs-3 no-padding">
+                        <label>Path File For SAP</label>
+                    </div>
+                    <div class="col-lg-7 col-md-7 col-xs-7">
+                        <input type="text" class="form-control" [(ngModel)]="Name" name="Name" id="Name">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</ng-container>

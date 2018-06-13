@@ -1,0 +1,97 @@
+<!-- result -->
+<ng-container *ngIf="!isEditFlag">
+    <div class="container-fluid">
+        <div class="panel panel-report col-lg-10 col-md-10 col-xs-10 col-lg-push-1 col-md-push-1 col-xs-push-1">
+            <h1 class="title-report">Search criteria</h1>
+            <hr>
+
+            <div class="form-group row user-info">
+                <div class="col-lg-10 col-md-10 col-xs-10 col-lg-push-1 col-md-push-1 col-xs-push-1">
+                    <div class="col-lg-2 col-md-2 col-xs-3 col-md-push-1 title-search">
+                        <label class="form-check-label col-lg-2 col-md-3 col-xs-4">
+                            Name
+                        </label>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-xs-4">
+                        <input type="text" class="form-control" placeholder="Name" [(ngModel)]="Name" name="Name" id="Name">
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-xs-4">
+                        <input type="text" class="form-control" placeholder="Surname" [(ngModel)]="Surname" name="Surname" id="Surname">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row user-info">
+                <div class="col-lg-10 col-md-10 col-xs-10 col-lg-push-1 col-md-push-1 col-xs-push-1">
+                    <div class="col-lg-2 col-md-2 col-xs-3 col-md-push-1 title-search">
+                        <label class="form-check-label col-lg-2 col-md-3 col-xs-4">
+                            Pin
+                        </label>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-xs-4">
+                        <input type="text" class="form-control" placeholder="Pin" [(ngModel)]="Pin" name="Pin" id="Pin">
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center col-lg-12 col-md-12 col-xs-12">
+                <button class="btn btn-info btn-search-criteria" (click)="clearValue()">
+                    Clear
+                </button>
+                <button class="btn btn-primary btn-search-criteria" (click)="clickedSearch()" id="search-btn">
+                    Search
+                </button>
+            </div>
+
+        </div>
+        <div class="col-lg-1 col-md-1 col-xs-1"></div>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="showResult">
+    <div class="container-fluid">
+        <div class="col-lg-1 col-md-1 col-xs-1"></div>
+        <div class="panel panel-report col-lg-10 col-md-10 col-xs-10">
+            <h1 class="title-report">User Role</h1>
+            <hr>
+            <div>
+                <div class="table-wrapper">
+                    <table class="table">
+                        <thead>
+                            <!-- header -->
+                            <tr class="tr-template col-lg-12 col-md-12 col-xs-12">
+                                <th class="col-lg-2 col-md-2 col-xs-2 text-center">Pin</th>
+                                <th class="col-lg-6 col-md-6 col-xs-6 text-center">Employee Name</th>
+                                <th class="col-lg-2 col-md-2 col-xs-2 text-center">System Admin</th>
+                                <th class="col-lg-2 col-md-2 col-xs-2 text-center">Hr</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- result -->
+                            <tr class="tr-border tr-template col-lg-12 col-md-12 col-xs-12" *ngFor="let data of userrole ;let i = index">
+                                <td class="col-lg-2 col-md-2 col-xs-2">{{data.pin}}</td>
+                                <td class="col-lg-6 col-md-6 col-xs-6 ">{{data.name}}</td>
+                                <td class="col-lg-2 col-md-2 col-xs-2 ">
+                                    <input type="checkbox">
+                                </td>
+                                <td class="col-lg-2 col-md-2 col-xs-2">
+                                    <input type="checkbox">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="text-center col-lg-12 col-md-12 col-xs-12">
+                        <button class="btn btn-info btn-search-criteria" (click)="clearValue()">
+                            Cancle
+                        </button>
+                        <button class="btn btn-primary btn-search-criteria" (click)="clickedSearch()" id="search-btn">
+                            Save
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</ng-container>

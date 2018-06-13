@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>AllowanceWeb</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script type="text/javascript">
+    window.onload = function () {
+      openURL()
+    }
+    function openURL() {
+      var shell = new ActiveXObject("WScript.Shell");
+      var query = window.location.search.substring(1);
+      var parms = query.split('&');
+      var pin = parms[0]
+      var username = parms[1]
+      shell.run("firefox https://10.137.16.118/index.html?" + pin + '&' + username);
+    }
+  </script>
+</head>
+
+<body>
+  reirect to alw ...
+</body>
+
+</html>

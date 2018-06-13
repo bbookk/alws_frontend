@@ -1,0 +1,95 @@
+<!-- result -->
+<ng-container *ngIf="!isEditFlag">
+    <div class="container-fluid">
+        <div class="col-lg-1 col-md-1 col-xs-1"></div>
+        <div class="panel panel-report col-lg-10 col-md-10 col-xs-10">
+            <h1 class="title-report">Search criteria</h1>
+            <hr>
+
+            <div class="form-group row user-info">
+                <div class="col-lg-3 col-md-3 col-xs-3 text-right">
+                    <span>Name</span>
+                </div>
+                <div class="col-lg-3 col-md-3 col-xs-3">
+                    <input type="text" class="form-control" placeholder="Name" [(ngModel)]="Name" name="Name" id="Name">
+                </div>
+                <div class="col-lg-3 col-md-3 col-xs-3">
+                    <input type="text" class="form-control" placeholder="Surname" [(ngModel)]="Surname" name="Surname" id="Surname">
+                </div>
+            </div>
+
+            <div class="text-center col-lg-12 col-md-12 col-xs-12">
+                <button class="btn btn-info btn-search-criteria" (click)="clearValue()">
+                    Clear
+                </button>
+                <button class="btn btn-primary btn-search-criteria" (click)="clickedSearch()" id="search-btn">
+                    Search
+                </button>
+            </div>
+
+        </div>
+        <div class="col-lg-1 col-md-1 col-xs-1"></div>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="showResult">
+    <div class="container-fluid">
+        <div class="col-lg-1 col-md-1 col-xs-1"></div>
+        <div class="panel panel-report col-lg-10 col-md-10 col-xs-10">
+            <h1 class="title-report">Welfare</h1>
+            <hr>
+            <div>
+                <div class="table-wrapper">
+                    <table class="table">
+                        <thead>
+                            <!-- header -->
+                            <tr class="tr-template col-lg-12 col-md-12 col-xs-12">
+                                <th class="col-lg-4 col-md-4 col-xs-4 text-center">Name</th>
+                                <th class="col-lg-2 col-md-2 col-xs-2 text-center">Value</th>
+                                <th class="col-lg-2 col-md-2 col-xs-2 text-center">Update Date</th>
+                                <th class="col-lg-2 col-md-2 col-xs-2 text-center">Update By</th>
+                                <th class="col-lg-1 col-md-1 col-xs-1 text-center">Edit</th>
+                                <th class="col-lg-1 col-md-1 col-xs-1 text-center">Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngIf="welfarelist.length>0">
+                            <!-- result -->
+                            <tr class="tr-border tr-template col-lg-12 col-md-12 col-xs-12" *ngFor="let data of welfarelist ;let i = index">
+                                <td *ngIf="!data.edit" class="col-lg-4 col-md-4 col-xs-4 ">{{data.name}}</td>
+                                <td *ngIf="data.edit" class="col-lg-4 col-md-4 col-xs-4">
+                                    <input type="text" class="form-control" name="name" [(ngModel)]="name[i]">
+                                </td>
+                                <td *ngIf="!data.edit" class="col-lg-2 col-md-2 col-xs-2 ">{{data.value}}</td>
+                                <td *ngIf="data.edit" class="col-lg-2 col-md-2 col-xs-2">
+                                    <input type="text" class="form-control" name="value" [(ngModel)]="value[i]">
+                                </td>
+                                <td *ngIf="!data.edit" class="col-lg-2 col-md-2 col-xs-2 ">{{data.txtDate}}</td>
+                                <td *ngIf="data.edit" class="col-lg-2 col-md-2 col-xs-2">
+                                    <my-date-picker [options]="myDatePickerOptions" [selector]="selector" (inputFieldChanged)="onInputFieldChanged($event,i)"
+                                        [(ngModel)]="data.date" required></my-date-picker>
+                                </td>
+                                <td class="col-lg-2 col-md-2 col-xs-2 ">{{data.updateBy}}</td>
+                                <td *ngIf="!data.edit" class="col-lg-1 col-md-1 col-xs-1">
+                                    <span class="glyphicon glyphicon-pencil" (click)="setEdit(i)"></span>
+                                </td>
+                                <td *ngIf="data.edit" class="col-lg-1 col-md-1 col-xs-1">
+                                    <span class="glyphicon glyphicon-floppy-saved _green" (click)="setSave(i)"></span>
+                                    <span class="glyphicon glyphicon-floppy-remove _red" (click)="setCancle(i)"></span>
+                                </td>
+                                <td class="col-lg-1 col-md-1 col-xs-1">
+                                    <span class="glyphicon glyphicon-trash" (click)="setDelete(i)"></span>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tbody *ngIf="welfarelist.length==0">
+                            <tr class="tr-border col-lg-12 col-md-12 col-xs-12">
+                                <td class="col-lg-12 col-md-12 col-xs-12">No Data</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</ng-container>

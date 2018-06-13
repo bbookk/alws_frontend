@@ -1,0 +1,43 @@
+<!--<app-header></app-header>-->
+<div class="col-lg-1 col-md-1 col-xs-1"></div>
+<div class="panel panel-home col-lg-10 col-md-10 col-xs-10">
+  <!-- <h1 class="title-home">{{ 'home.title' | translate }}</h1> -->
+  <h1 class="title-home">Home</h1>
+  <hr>
+  <div class="user-info">
+    <span class="col-lg-1 col-md-1 col-xs-1"></span>
+    <!-- <span class="col-lg-2 col-md-3 col-xs-3 title-info">{{ 'home.name' | translate }} :</span> -->
+    <span class="col-lg-2 col-md-3 col-xs-3 title-info">ชื่อ - นามสกุล :</span>
+    <span class="col-lg-1 col-md-2 col-xs-3"></span>
+    <!-- <span class="">นาย ก</span> -->
+    <span class="">{{wordObj.username}}</span>
+    <br>
+  </div>
+  <div class="user-info">
+    <span class="col-lg-1 col-md-1 col-xs-1"></span>
+    <!-- <span class="col-lg-2 col-md-3 col-xs-3 title-info">{{ 'home.position' | translate }} :</span> -->
+    <span class="col-lg-2 col-md-3 col-xs-3 title-info">ตำแหน่งงาน:</span>
+    <span class="col-lg-1 col-md-2 col-xs-3"></span>
+    <!-- <span class="">Supervisor</span> -->
+    <span class="">{{wordObj.position}}</span>
+    <br>
+  </div>
+  <div class="user-info">
+    <span class="col-lg-1 col-md-1 col-xs-1"></span>
+    <!-- <span class="col-lg-2 col-md-3 col-xs-3 title-info">{{ 'home.corp' | translate }} :</span> -->
+    <span class="col-lg-2 col-md-3 col-xs-3 title-info">สังกัด :</span>
+    <span class="col-lg-1 col-md-2 col-xs-3"></span>
+    <!-- <span class="">AIS</span> -->
+    <span class="">{{wordObj.department}}</span>
+    <br>
+  </div>
+  <div class="user-info">
+    <span class="col-lg-1 col-md-1 col-xs-1"></span>
+    <!-- <span class="col-lg-2 col-md-3 col-xs-3 title-info">{{ 'home.last-online' | translate }} :</span> -->
+    <span class="col-lg-2 col-md-3 col-xs-3 title-info">ใช้งานล่าสุด:</span>
+    <span class="col-lg-1 col-md-2 col-xs-3"></span>
+    <!-- <span class="">20 ม.ค. 61 | 12:00 น.</span> -->
+    <span class="">{{wordObj.lastLogin}}</span>
+    <br>
+  </div>
+</div>

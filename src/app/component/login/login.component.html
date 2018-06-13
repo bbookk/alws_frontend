@@ -1,0 +1,41 @@
+<div class="container-login">
+  <div class="container size-container">
+    <div class="row">
+      <div class="col-xs-12 col-md-12 content-container">
+        <div class="">
+          <img class="logo-round" src="../../assets/img/login/logo-login.png">
+        </div>
+
+        <div class="">
+          <form class="form-login">
+            <div class="form-group">
+              <div class="title-section">
+                <span class="title-2 _brown">เข้าสู่ระบบ</span>
+                <br>
+                <span class="_brown">สำหรับผู้บริหารจัดการระบบ</span>
+                
+              </div>
+              <div class="language-container pull-right _desktop">
+                <div class="circleBase" (click)="changeLanguage('TH')" [ngClass]="{active: currentLanguage == 'TH', 'in-active _nobel-gray': currentLanguage != 'TH'}">ไทย</div>
+                <div class="circleBase" (click)="changeLanguage('EN')" [ngClass]="{active: currentLanguage == 'EN', 'in-active _nobel-gray': currentLanguage != 'EN'}">EN</div>
+              </div>
+              <input #input type="text" class="form-control" id="user" placeholder="&#xf2c0; ชื่อผู้ใช้งาน" 
+                  name="username" style="font-family:Arial, FontAwesome" autocomplete="off" [(ngModel)]="username">
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control password" id="password"
+                  name="password" placeholder="&#xf023; ••••••" style="font-family:Arial, FontAwesome" autocomplete="new-password" [(ngModel)]="password">
+            </div>
+            <button type="button"  class="btn btn-light-green width-100" style="margin-bottom: 25px; font-size: 16px;" (click)="clickLogin()" [routerLink]="['/home']">
+              เข้าสู่ระบบ
+            </button>
+            <button type="button"  class="btn btn-light-green width-100" style="margin-bottom: 25px; font-size: 16px;" (click)="login()">
+              เทส
+            </button>
+          </form>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>

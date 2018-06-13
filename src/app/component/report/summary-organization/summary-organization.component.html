@@ -1,0 +1,161 @@
+<!--<app-header></app-header>-->
+
+<!-- search -->
+<div class="container-fluid">
+    <div class="col-lg-1 col-md-1 col-xs-1"></div>
+
+    <div class="panel panel-report col-lg-10 col-md-10 col-xs-10">
+        <h1 class="title-report">Search criteria</h1>
+
+        <div class="form-group row user-info">
+            <span class="col-lg-1 col-md-1 col-xs-1"></span>
+            <span class="col-lg-2 col-md-2 col-xs-3 text-right">Company</span>
+            <div class="col-lg-3 col-md-3 col-xs-5">
+                <select class="form-control" [(ngModel)]="company" (change)="onCompanyChange($event.target.value)">
+                    <option *ngFor="let data of companyList" [value]="data">{{data}}</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group row user-info">
+            <span class="col-lg-1 col-md-1 col-xs-1"></span>
+            <span class="col-lg-2 col-md-2 col-xs-3 text-right">Business Unit</span>
+            <div class="col-lg-3 col-md-3 col-xs-5">
+                <select class="form-control" [(ngModel)]="businessUnit">
+                    <option value="" disabled>Select Business Unit</option>
+                    <option *ngFor="let data of data2screen.buList" [value]="data">{{data}}</option>
+                </select>
+            </div>
+            <span class="col-lg-1 col-md-1 col-xs-12"></span>
+            <span class="col-lg-1 col-md-2 col-xs-4 text-right">Department</span>
+            <div class="col-lg-3 col-md-3 col-xs-5">
+                <select class="form-control" [(ngModel)]="department">
+                    <option value="" disabled>Select Department</option>
+                    <option *ngFor="let data of data2screen.dpList" [value]="data">{{data}}</option>
+                </select>
+            </div>
+
+        </div>
+
+        <div class="form-group row user-info">
+            <span class="col-lg-1 col-md-1 col-xs-1"></span>
+            <span class="col-lg-2 col-md-2 col-xs-3 text-right">Section</span>
+            <div class="col-lg-3 col-md-3 col-xs-5">
+                <select class="form-control" [(ngModel)]="section">
+                    <option value="" disabled>Select Section</option>
+                    <option *ngFor="let data of data2screen.scList" [value]="data">{{data}}</option>
+                </select>
+            </div>
+
+            <span class="col-lg-1 col-md-1 col-xs-12"></span>
+            <span class="col-lg-1 col-md-2 col-xs-4 text-right">Function</span>
+            <div class="col-lg-3 col-md-3 col-xs-5">
+                <select class="form-control" [(ngModel)]="function">
+                    <option value="" disabled>Select Function</option>
+                    <option *ngFor="let data of data2screen.fcList" [value]="data">{{data}}</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group row user-info">
+            <span class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></span>
+            <span class="col-lg-2 col-md-2 col-sm-3 col-xs-3 text-right">Period From</span>
+            <my-date-picker class="col-lg-3 col-md-3 col-sm-3 col-xs-3" [options]="myDatePickerOptions" [(ngModel)]="periodFrom" (dateChanged)="onDateChanged_from($event)"></my-date-picker>
+            <span class="col-lg-2 col-md-2 col-sm-1 col-xs-1 text-right">To</span>
+            <my-date-picker class="col-lg-3 col-md-3 col-sm-3 col-xs-3" [options]="myDatePickerOptions" [(ngModel)]="periodTo" (dateChanged)="onDateChanged_to($event)"></my-date-picker>
+
+            <br>
+        </div>
+
+        <div class="text-center col-lg-12 col-md-12 col-xs-12">
+
+            <button class="btn btn-info btn-search-criteria" (click)="clearDropdown()">
+                Clear
+            </button>
+            <button class="btn btn-warning btn-search-criteria">
+                Export to Excel
+            </button>
+            <button class="btn btn-primary btn-search-criteria" (click)="clickedSearch()" id="search-btn">
+                Search
+            </button>
+
+        </div>
+
+    </div>
+    <div class="col-lg-1 col-md-1 col-xs-1"></div>
+</div>
+
+<!-- result -->
+<ng-container *ngIf="showResult">
+    <div class="container-fluid">
+        <div class="col-lg-1 col-md-1 col-xs-1"></div>
+        <div class="panel panel-report col-lg-10 col-md-10 col-xs-10">
+            <h1 class="title-report">Result</h1>
+            <hr>
+
+            <div>
+                <div class="table-wrapper">
+                    <table class="table">
+                        <thead>
+                            <!-- header -->
+                            <tr>
+                                <th class="col-md-1 col-lg-1 col-sm-1" rowspan="2">Name</th>
+                                <th class="col-md-1 col-lg-1 col-sm-1" rowspan="2">Organization Short Name</th>
+                                <th class="col-md-1 col-lg-1 col-sm-1" colspan="3">OT (Hour)</th>
+                                <th class="col-md-1 col-lg-1 col-sm-1" rowspan="2">ค่ากะ</th>
+                                <th class="col-md-1 col-lg-1 col-sm-1" rowspan="2">ค่ารถ</th>
+                                <th class="col-md-1 col-lg-1 col-sm-1" rowspan="2">ค่าเบี้ยขยัน</th>
+                                <th class="col-md-1 col-lg-1 col-sm-1" rowspan="2">ขาดงาน</th>
+                                <th class="col-md-1 col-lg-1 col-sm-1" rowspan="2">มาสาย</th>
+                                <th class="col-md-1 col-lg-1 col-sm-1" colspan="4">ลา</th>
+
+                            </tr>
+                            <tr>
+                                <th class="col-md-1 col-lg-1 col-sm-1">1 เท่า</th>
+                                <th class="col-md-1 col-lg-1 col-sm-1">1.5 เท่า</th>
+                                <th class="col-md-1 col-lg-1 col-sm-1">3 เท่า</th>
+                                <th class="col-md-1 col-lg-1 col-sm-1">ลาป่วย</th>
+                                <th class="col-md-1 col-lg-1 col-sm-1">ลากิจ</th>
+                                <th class="col-md-1 col-lg-1 col-sm-1">ลาพักร้อน</th>
+                                <th class="col-md-1 col-lg-1 col-sm-1">Compensate</th>
+                            </tr>
+                            <!-- result -->
+
+                            <tr class="tr-border" *ngFor="let data of resultRecord">
+                                <td>{{data.name}}</td>
+                                <td>{{data.orgShortName}}</td>
+                                <td>{{data.otHours.ot1}}</td>
+                                <td>{{data.otHours.ot15}}</td>
+                                <td>{{data.otHours.ot3}}</td>
+                                <td>{{data.shift}}</td>
+                                <td>{{data.trans}}</td>
+                                <td>{{data.attendance}}</td>
+                                <td>{{data.absent}}</td>
+                                <td>{{data.late}}</td>
+                                <td>{{data.leave.sick}}</td>
+                                <td>{{data.leave.business}}</td>
+                                <td>{{data.leave.holiday}}</td>
+                                <td>{{data.leave.others}}</td>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-container>
+
+<go-top-button [html]="'<i class=\'fa fa-arrow-up\'></i>'" [animate]="true" [speed]="50" [acceleration]="2" [scrollDistance]="300"
+    [styles]="{
+     'border-radius': '30px',
+     'right': '15px',
+     'color': 'white',
+     'line-height': '20px',
+     'top': '85%',
+     'width': '55px',
+     'height': '55px',
+     'border': 'none',
+     'background': 'yellowgreen',
+     'font-size': '20px'
+  }">
+</go-top-button>

@@ -1,0 +1,142 @@
+
+
+<!-- banner -->
+<div class="site-header">
+  <!-- Logo -->
+  <!-- <img src="../../assets/Header-image.jpg" style="width:100%; height:120px; position: inherit;"> -->
+  <a href="home">
+    <img src="../../assets/img/header/Logo-AISAllowance-header.png" style=" margin: 10px;">
+  </a>
+
+  <div style="float:right; margin-right: 25px">
+
+    <!-- Logout -->
+    <div class="logout-btn">
+      <a class="btn btn-default" (click)="clickLogout()">
+        ออกจากระบบ
+      </a>
+    </div>
+
+    <!-- Username -->
+    <div class="user-header">
+      <td>
+        <i class="fa fa-user-circle-o"></i>
+      </td>
+      <h2>
+        ชื่อผู้ใช้
+      </h2>
+    </div>
+
+
+  </div>
+
+</div>
+
+
+<!-- nav -->
+<nav class="navbar navbar-default" style="background-color:white; border-color:white; margin: 0px; height: 50px;">
+  <div class="navbar-header" style="width: 100%; height: 100%">
+    <i class="fa fa-bars" style="float: left; font-size: 30px; cursor:pointer; margin-left: 15px; color: #74a822; height: 100%; line-height: 48px;"
+      (click)="openNav($event)"></i>
+    <h4 style="float: left; margin: 0 0 0 10px; height: 50px; line-height: 50px;">
+      เมนู
+    </h4>
+    <p style="float: right; height: 50px; line-height: 50px; margin: 0 25px 0 0">
+      {{time}}
+    </p>
+    <p style="float: right; height: 50px; line-height: 50px; margin: 0 25px 0 0">
+      {{day}}
+    </p>
+
+  </div>
+</nav>
+
+<div (click)="onContainerClicked($event)" class="modal fade" tabindex="-1" [ngClass]="{'in': visibleAnimate}" [ngStyle]="{'display': visible ? 'block' : 'none', 'opacity': visibleAnimate ? 1 : 0}">
+  <div id="mySidenav" class="sidenav">
+    <!-- <i class="fa fa-bars" style="float: left; font-size: 35px; cursor:pointer; margin-left: 15px; color: #8dc63f; height: 100%; line-height: 48px;" (click)="closeNav($event)"></i> -->
+    <a href="javascript:void(0)" class="closebtn fa fa-bars" (click)="closeNav($event)"></a>
+    <hr style="margin: 0;">
+    <a href="javascript:void(0)">เปลี่ยนภาษา
+      <div class="language-container pull-right _desktop">
+        <div class="circleBase" (click)="changeLanguage('TH')" [ngClass]="{active: currentLanguage == 'TH', 'in-active _nobel-gray': currentLanguage != 'TH'}">ไทย</div>
+        <div class="circleBase" (click)="changeLanguage('EN')" [ngClass]="{active: currentLanguage == 'EN', 'in-active _nobel-gray': currentLanguage != 'EN'}">EN</div>
+      </div>
+    </a>
+    <hr style="margin: 0;">
+    <a href="javascript:void(0)" [routerLink]="['/home','']" (click)="closeNav($event)">
+      <span class="sidebar-icon">
+        <i class="fa fa-home"></i>
+      </span>
+      <span class="sidebar-title">หน้าหลัก</span>
+    </a>
+    <hr style="margin: 0;">
+    <a [ngClass]="{hidden :isHiddenMain(mainMenu.report)}" class="accordion-toggle collapsed toggle-switch" data-toggle="collapse" href="#submenu-report">
+      <span class="sidebar-icon">
+        <i class="fa fa-clipboard"></i>
+      </span>
+      <span class="sidebar-title">Report</span>
+      <span class="fa fa-angle-down"></span>
+    </a>
+    <ul id="submenu-report" class="panel-collapse collapse panel-switch" role="menu" style="padding-left: 25px" (click)="closeNav($event)">
+      <a [ngClass]="{hidden :isHidden(menu.sumDaily)}" [routerLink]="['/report/summary-daily']">Summary Daily</a>
+      <a [ngClass]="{hidden :isHidden(menu.sumMonthly)}" [routerLink]="['/report/summary-monthly']">Summary Monthly</a>
+      <a [ngClass]="{hidden :isHidden(menu.sumSuper)}" [routerLink]="['/report/summary-supervisor']">Summary Supervisor</a>
+      <!-- <a [routerLink]="['/report/summary-super-search']">Summary Super Search</a> -->
+      <a [ngClass]="{hidden :isHidden(menu.sumOrg)}" [routerLink]="['/report/summary-organization']">Summary Organization</a>
+      <a [ngClass]="{hidden :isHidden(menu.apprReport)}" [routerLink]="['/report/approve-allowance-report']">Approve Allowance Report</a>
+      <a [ngClass]="{hidden :isHidden(menu.sumAdjReport)}" [routerLink]="['/report/summary-adjust-report']">Summary Adjust Report</a>
+      <!--   <a href="home">Download Allowance File</a> -->
+    </ul>
+
+    <hr style="margin: 0;" />
+    <a [ngClass]="{hidden :isHiddenMain(mainMenu.engine)}" href="javascript:void(0)" (click)="closeNav($event)">
+      <span class="sidebar-icon">
+        <i class="fa fa-gear"></i>
+      </span>
+      <span [ngClass]="{hidden :isHidden(menu.ctrlBatch)}" class="sidebar-title" [routerLink]="['/engine']">Engine</span>
+    </a>
+    <hr style="margin: 0;" />
+    <a [ngClass]="{hidden :isHiddenMain(mainMenu.setup)}" class="accordion-toggle collapsed toggle-switch" data-toggle="collapse" href="#submenu-setup">
+      <span class="sidebar-icon">
+        <i class="fa fa-wrench"></i>
+      </span>
+      <span class="sidebar-title">Set up</span>
+      <span class="fa fa-angle-down"></span>
+    </a>
+    <ul id="submenu-setup" class="panel-collapse collapse panel-switch" role="menu" style="padding-left: 25px">
+      <a [ngClass]="{hidden :isHidden(menu.accOrgPath)}" [routerLink]="['/setup/acc-organize-path']">ACC Organization Path</a>
+      <a [ngClass]="{hidden :isHidden(menu.specialDay)}" [routerLink]="['/setup/special-day']">Special Day</a>
+      <a [ngClass]="{hidden :isHidden(menu.sysConf)}" [routerLink]="['/setup/system-config']">System Config</a>
+      <a [ngClass]="{hidden :isHidden(menu.userRole)}" [routerLink]="['/setup/user-role']">User Role</a>
+      <a [ngClass]="{hidden :isHidden(menu.welfare)}" [routerLink]="['/setup/welfare']">Welfare</a>
+      <a [ngClass]="{hidden :isHidden(menu.keyword)}" [routerLink]="['/setup/keyword']">Keyword</a>
+      <a [ngClass]="{hidden :isHidden(menu.otSapReport)}" [routerLink]="['/setup/ot-sap-report']">OT SAP Report</a>
+      <a [ngClass]="{hidden :isHidden(menu.userDetail)}" [routerLink]="['/setup/user-detail']">User Detail</a>
+      <a [ngClass]="{hidden :isHidden(menu.maxOT)}" [routerLink]="['/setup/max-Users-ot-Compensation']">Max User's OT Compensation</a>
+    </ul>
+  </div>
+</div>
+<!-- breadcrumb -->
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">
+    <a [routerLink]="['/home','']">หน้าหลัก</a>
+  </li>
+<!-- 
+  <li class="breadcrumb-item" *ngIf="router.url != '/home'">
+    <a [routerLink]="['/report/summary-daily']">Report</a>
+    &nbsp; &nbsp; {{router.url.replace('report','')}}
+  </li> -->
+</ol>
+<div>
+
+</div>
+
+<alw-modal #modal>
+  <div class="app-modal-body">
+    ขอบคุณที่ใช้บริการ
+  </div>
+  <!-- <div class="app-modal-body" id="print-billing-example1">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center"><img class="modal-img" src="../../assets/img/ecareService/ecareIssue/billing/bill-example1TH.png"></div>
+    </div> -->
+</alw-modal>

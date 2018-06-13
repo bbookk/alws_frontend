@@ -1,0 +1,256 @@
+<!--<app-header></app-header>-->
+
+<!-- search -->
+<div class="container-fluid">
+  <div class="col-lg-1 col-md-1 col-xs-1"></div>
+
+  <div class="panel panel-report col-lg-10 col-md-10 col-xs-10">
+    <h1 class="title-report">Search criteria</h1>
+    <hr>
+    <div class="form-group row user-info">
+
+        <div class="form-group row user-info">
+            <span class="col-lg-1 col-md-1 col-xs-1"></span>
+            <span class="col-lg-2 col-md-2 col-xs-3 text-right">Employee Type </span>
+            <div class="form-check col-lg-8 col-md-8 col-xs-7">
+                <label class="form-check-label col-lg-2 col-md-3 col-xs-7">
+                    <input type="radio" class="form-check-input" value="Agent" name="empType" [(ngModel)]="empType" (ngModelChange)="onChangeEmpType()"> Agent
+                </label>
+                <label class="form-check-label col-lg-3 col-md-4 col-xs-7">
+                    <input type="radio" class="form-check-input" value="Supervisor" name="empType" [(ngModel)]="empType" (ngModelChange)="onChangeEmpType()"> Supervisor
+                </label>
+            </div>
+        </div>
+
+
+        <div class="form-group row user-info">
+            <span class="col-lg-1 col-md-1 col-xs-1"></span>
+            <span class="col-lg-2 col-md-2 col-xs-3 text-right">Search By</span>
+            <div class="form-check col-lg-7 col-md-7 col-xs-7">
+              <label class="form-check-label col-lg-2 col-md-3 col-xs-4">  
+                <input type="radio" class="form-check-input" value="PIN" name="search-by" [(ngModel)]="searchBy"> 
+                PIN
+              </label>
+              <label class="form-check-label col-lg-2 col-md-3 col-xs-6">
+                <input type="radio" class="form-check-input" value="NAME" name="search-by" [(ngModel)]="searchBy">
+                Name
+              </label>
+            </div>
+            <br>
+          </div>    
+          
+          <div class="form-group row user-info">
+            <span class="col-lg-3 col-md-3 col-sm-4 col-xs-4"></span>
+            <!-- input PIN -->
+            <div class="col-lg-3 col-md-3 col-xs-3" *ngIf="searchBy === 'PIN'" >
+              <input type="text" class="form-control" placeholder="PIN Number"  name="PIN" id="PIN" [(ngModel)]="pin">
+         
+            </div>
+            
+            <!-- imput Name -->
+            <div class="col-lg-3 col-md-3 col-xs-3" *ngIf="searchBy === 'NAME'" >
+              <input type="text" class="form-control" placeholder="name"  [(ngModel)]="name" name="Name" id="Name">
+            </div>
+            <div class="col-lg-3 col-md-3 col-xs-3" *ngIf="searchBy === 'NAME'" >
+              <input type="text" class="form-control" placeholder="surname"  [(ngModel)]="surname" name="Surname" id="Surname">
+            </div>
+          </div>
+
+      <div class="form-group row user-info">
+        <span class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></span>
+        <span class="col-lg-2 col-md-2 col-sm-3 col-xs-3 text-right">Period From</span>
+        <my-date-picker class="col-lg-3 col-md-3 col-sm-3 col-xs-3" [options]="myDatePickerOptions" (dateChanged)="onDateChanged_from($event)"></my-date-picker>
+        <span class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-right">To</span>
+        <my-date-picker class="col-lg-3 col-md-3 col-sm-3 col-xs-3" [options]="myDatePickerOptions" (dateChanged)="onDateChanged_to($event)"></my-date-picker>
+
+        <br>
+      </div>
+
+      <div class="text-center col-lg-12 col-md-12 col-xs-12">
+
+        <button class="btn btn-info btn-search-criteria">
+          Clear
+        </button>
+        <button class="btn btn-warning btn-search-criteria">
+          Export to Excel
+        </button>
+        <button class="btn btn-primary btn-search-criteria" (click)="clickedSearch()" id="search-btn">
+          Search
+        </button>
+
+      </div>
+
+    </div>
+    <div class="col-lg-1 col-md-1 col-xs-1"></div>
+  </div>
+
+  <!-- Employee detail -->
+  <ng-container *ngIf="showResult && empType != SUPERVISOR">
+    <div class="container-fluid" *ngIf="showResult">
+      <div class="col-lg-1 col-md-1 col-xs-1"></div>
+      <div class="panel panel-report col-lg-10 col-md-10 col-xs-10">
+        <h1 class="title-report">Employee Detail</h1>
+        <hr>
+        <!-- line 1  -->
+        <div class="form-group row user-info">
+          <span class="col-lg-1 col-md-1 col-xs-0"></span>
+          <span class="col-lg-2 col-md-2 col-xs-2 text-right">PIN:</span>
+          <span class="col-lg-3 col-md-3 col-xs-3">{{employeeDetail.pin}}</span>
+
+          <span class="col-lg-2 col-md-2 col-xs-2 text-right">Name:</span>
+          <span class="col-lg-3 col-md-3 col-xs-4">{{employeeDetail.name}}</span>
+          <br>
+        </div>
+        <!-- line 2  -->
+        <div class="form-group row user-info">
+          <span class="col-lg-1 col-md-1 col-xs-0"></span>
+          <span class="col-lg-2 col-md-2 col-xs-2 text-right">BL:</span>
+          <span class="col-lg-3 col-md-3 col-xs-3">{{employeeDetail.bl}}</span>
+
+          <span class="col-lg-2 col-md-2 col-xs-2 text-right">Company:</span>
+          <span class="col-lg-3 col-md-3 col-xs-4">{{employeeDetail.company}}</span>
+          <br>
+        </div>
+        <!-- line 3  -->
+        <div class="form-group row user-info">
+          <span class="col-lg-1 col-md-1 col-xs-0"></span>
+          <span class="col-lg-2 col-md-2 col-xs-2 text-right">BU/SU:</span>
+          <span class="col-lg-3 col-md-3 col-xs-3">{{employeeDetail.bu}}</span>
+
+          <span class="col-lg-2 col-md-2 col-xs-2 text-right">Department:</span>
+          <span class="col-lg-3 col-md-3 col-xs-4">{{employeeDetail.department}}</span>
+          <br>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+
+  <!-- result -->
+  <ng-container *ngIf="showResult">
+    <div class="container-fluid" *ngIf="empType != SUPERVISOR">
+      <div class="col-lg-1 col-md-1 col-xs-1"></div>
+      <div class="panel panel-report col-lg-10 col-md-10 col-xs-10">
+        <h1 class="title-report">Result</h1>
+        <hr>
+
+       
+        <div>
+          <div class="table-wrapper">
+            <table class="table">
+              <thead>
+                <!-- header -->
+                <tr>
+                  <th class="col-md-1 col-lg-1 col-sm-1" rowspan="2">Month / Year</th>
+                  <th class="col-md-1 col-lg-1 col-sm-1" colspan="3">OT (Hour)</th>
+                  <th class="col-md-1 col-lg-1 col-sm-1" rowspan="2">ค่ากะ</th>
+                  <th class="col-md-1 col-lg-1 col-sm-1" rowspan="2">ค่ารถ</th>
+                  <th class="col-md-1 col-lg-1 col-sm-1" rowspan="2">ค่าเบี้ยขยัน</th>
+                  <th class="col-md-1 col-lg-1 col-sm-1" rowspan="2">ขาดงาน</th>
+                  <th class="col-md-1 col-lg-1 col-sm-1" rowspan="2">มาสาย</th>
+                  <th class="col-md-1 col-lg-1 col-sm-1" colspan="4">ลา</th>
+                </tr>
+                <tr>
+                  <th class="col-md-1 col-lg-1 col-sm-1">1 เท่า</th>
+                  <th class="col-md-1 col-lg-1 col-sm-1">1.5 เท่า</th>
+                  <th class="col-md-1 col-lg-1 col-sm-1">3 เท่า</th>
+                  <th class="col-md-1 col-lg-1 col-sm-1">ลาป่วย</th>
+                  <th class="col-md-1 col-lg-1 col-sm-1">ลากิจ</th>
+                  <th class="col-md-1 col-lg-1 col-sm-1">ลาพักร้อน</th>
+                  <th class="col-md-1 col-lg-1 col-sm-1">Compensate</th>
+                </tr>
+                <!-- result -->
+
+                <tr class="tr-border" *ngFor="let data of resultRecord">
+                  <td>{{data.monthYear}}</td>
+                  <td>{{data.otHours.ot1}}</td>
+                  <td>{{data.otHours.ot15}}</td>
+                  <td>{{data.otHours.ot3}}</td>
+                  <td>{{data.shift}}</td>
+                  <td>{{data.trans}}</td>
+                  <td>{{data.attendance}}</td>
+                  <td>{{data.absent}}</td>
+                  <td>{{data.late}}</td>
+                  <td>{{data.leave.sick}}</td>
+                  <td>{{data.leave.business}}</td>
+                  <td>{{data.leave.holiday}}</td>
+                  <td>{{data.leave.others}}</td>
+                </tr>
+              </thead>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="container-fluid" *ngIf="empType == SUPERVISOR">
+        <div class="col-lg-1 col-md-1 col-xs-1"></div>
+        <div class="panel panel-report col-lg-10 col-md-10 col-xs-10">
+          <h1 class="title-report">Result</h1>
+          <hr>
+          <div>
+            <div class="table-wrapper">
+              <table class="table">
+                <thead>
+                  <!-- header -->
+                  <tr>
+                    <th class="col-md-1 col-lg-1 col-sm-1" rowspan="2">Pin</th>
+                    <th class="col-md-1 col-lg-1 col-sm-1" rowspan="2">Employee Name</th>
+                    <th class="col-md-1 col-lg-1 col-sm-1" colspan="3">OT (Hour)</th>
+                    <th class="col-md-1 col-lg-1 col-sm-1" rowspan="2">ค่ากะ</th>
+                    <th class="col-md-1 col-lg-1 col-sm-1" rowspan="2">ค่ารถ</th>
+                    <th class="col-md-1 col-lg-1 col-sm-1" rowspan="2">ค่าเบี้ยขยัน</th>
+                    <th class="col-md-1 col-lg-1 col-sm-1" rowspan="2">ขาดงาน</th>
+                    <th class="col-md-1 col-lg-1 col-sm-1" rowspan="2">มาสาย</th>
+                    <th class="col-md-1 col-lg-1 col-sm-1" colspan="4">ลา</th>
+                  </tr>
+                  <tr>
+                    <th class="col-md-1 col-lg-1 col-sm-1">1 เท่า</th>
+                    <th class="col-md-1 col-lg-1 col-sm-1">1.5 เท่า</th>
+                    <th class="col-md-1 col-lg-1 col-sm-1">3 เท่า</th>
+                    <th class="col-md-1 col-lg-1 col-sm-1">ลาป่วย</th>
+                    <th class="col-md-1 col-lg-1 col-sm-1">ลากิจ</th>
+                    <th class="col-md-1 col-lg-1 col-sm-1">ลาพักร้อน</th>
+                    <th class="col-md-1 col-lg-1 col-sm-1">Compensate</th>
+                  </tr>
+                  <!-- result -->
+    
+                  <tr class="tr-border" *ngFor="let data of resultRecord">
+                    <td>{{data.pin}}</td>
+                    <td>{{data.employeeName}}</td>
+                    <td>{{data.otHours.ot1}}</td>
+                    <td>{{data.otHours.ot15}}</td>
+                    <td>{{data.otHours.ot3}}</td>
+                    <td>{{data.shift}}</td>
+                    <td>{{data.trans}}</td>
+                    <td>{{data.attendance}}</td>
+                    <td>{{data.absent}}</td>
+                    <td>{{data.late}}</td>
+                    <td>{{data.leave.sick}}</td>
+                    <td>{{data.leave.business}}</td>
+                    <td>{{data.leave.holiday}}</td>
+                    <td>{{data.leave.others}}</td>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+  </ng-container>
+
+  <go-top-button [html]="'<i class=\'fa fa-arrow-up\'></i>'" [animate]="true" [speed]="50" [acceleration]="2" [scrollDistance]="300"
+    [styles]="{
+     'border-radius': '30px',
+     'right': '15px',
+     'color': 'white',
+     'line-height': '20px',
+     'top': '85%',
+     'width': '55px',
+     'height': '55px',
+     'border': 'none',
+     'background': 'yellowgreen',
+     'font-size': '20px'
+  }">
+  </go-top-button>
